@@ -1,0 +1,41 @@
+rownanie = 0
+3 metody:
+-bisekcji (polowienie przedzialow)
+    opiera sie na tw Darbou
+    jak zmienia sie znak, to jest miejsce zerowe
+    robimy na przydziale (a,b)
+    metoda dziel i zwyciezaj
+    f(a)*f(b)<0 => miedzy a i b jest miejsce zerowe (lepiej: sgn(a) != sgn(b))
+    wtedy polowimy przedzial (a,b) punktem c (lepiej: c = a + (b-a)/2)
+    bierzemy nowy przedzial, zeby nadal byl rozny znak
+    ta metoda zawsze zbiezna do miejsca zerowego, ale powolna
+    warunki stopu:
+    ->mozna teoretycznie wyznaczyc ile krokow potrzeba
+    (mozna to wykorzystac jako kryterium stopu - napisane w labie)
+    ->|f(c)| < eps
+    ->|b-a| < delta (uwaga na asymptoty)
+    (uwaga na wielokrotne miejsca zerowe, moga byc problematyczne, np x^10)
+
+-stycznych (Newtona, Newtona-Rapsona)
+    na przedziale (a,b)
+    wyobrazmy sobie punkt startowy (moze byc to koniec przedzialu, nie musi) x0
+    w tym punkcie rysuje styczna, ona przecina OX w punkcie x1
+    teraz liczymy styczna w punkcie x1
+    przecina OX w x2
+    i tak dalej
+    zbiega to do miejsca zerowego, ale nie zawsze, mozemy sie wywalic
+    geometrycznie wyglada to dosyc przyjemnie,
+    x_n+1 = x_n - f(x_n)/f'(x_n)
+    zbiega kwadratowo, ale to klopotliwa metoda 
+    (dlatego czesto laczymy metody, np najpierw troche krokow bisekcji, a potem styczne)
+    f'(x_n) = (f(x_n) - f(x_n-1))/x_n - x_n-1 (mozemy tak przyblizac pochodna)
+
+-siecznych (secant)
+    zaczynamy od dwoch punktow poczatkowych, bo styczne sa upierdliwe, to robimy sieczne
+    sieczna, ale uznaczjemy, ze styczna (?)
+    jak dostaje kolejne x, to zamiast przechodzic jednym wskaznikiem, to przechodze na zmiane jednym z dwoch
+    (aproksymacja)
+    zbiega nadliniowo (lepiej niz liniowo, gorzej niz kwadratowo)
+
+pytanie: jak bysmy rozwiazali x^x = 25
+funkcja specjalna Lamberta (na 2-3 plusy)
