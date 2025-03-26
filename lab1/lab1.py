@@ -79,7 +79,76 @@ def different_way_of_summing(number: float):
     print("Recursion: ", ex_1_recursion(number))
     print("Kahan's: ", ex_2_Kahan(number))
 
-different_way_of_summing(0.377832)
+#different_way_of_summing(0.377832)
 
-def ex_3_dzeta_Riemanna(s: float, n: int):
-    pass
+def ex_3():
+    args = [2, 3.6667, 5, 7.2, 10]
+    n = [50, 100, 200, 500, 1000]
+
+    def dzeta_Riemann_increasing(s, n):
+        sum = np.float32(0)
+        for i in range(1, n+1):
+            sum += np.float32(1/i**s)
+        return sum
+
+    def dzeta_Riemann_decreasing(s, n):
+        sum = np.float32(0)
+        for i in range(n, 0, -1):
+            sum += np.float32(1/i**s)
+        return sum
+    
+    def eta_Dirichlet_increasing(s, n): 
+        sum = np.float32(0)
+        for i in range(1, n+1):
+            sum += np.float32((1/i**s) * (-1)**(i-1))
+        return sum
+
+    def eta_Dirichlet_decreasing(s, n):
+        sum = np.float32(0)
+        for i in range(n, 0, -1):
+            sum += np.float32((1/i**s) * (-1)**(i-1))
+        return sum
+    
+    for s in args:
+        print("s value is ", s, "\n")
+        for count in n:
+            print("\tn value is ", count, "\n")
+            print("\tdzeta_increasing: ", dzeta_Riemann_increasing(s, count))
+            print("\tdzeta_decreasing: ", dzeta_Riemann_decreasing(s, count))
+            print("\teta_increasing: ", eta_Dirichlet_increasing(s, count))
+            print("\teta_decreasing: ", eta_Dirichlet_decreasing(s, count))
+            print("\n")
+
+#ex_3()
+def population_over_time(x, r, n):
+    values = []
+    indecies = []
+    for i in range(n):
+        values.append(x)
+        indecies.append(i)
+        x = r*x*(1-x)
+
+    return values
+
+def ex_4(x=0.5):
+    
+    def population_over_rate(x):
+        values = []
+        indecies = []
+        r = 0
+        while r < 4:
+            values += population_over_time(0.5, r, 50)[-10:]
+            indecies += [r]*10
+            r += 0.0001
+
+        plt.plot(indecies, values, ",")
+        plt.xlabel("Growth Rate (r)")
+        plt.ylabel("Population")
+        plt.suptitle("Bifurcation Diagram")
+        plt.title("Starting population %.2f" %x, fontsize=10)
+        plt.show()
+        return
+
+    population_over_rate(x)
+
+ex_4(0.5)
