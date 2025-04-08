@@ -1,0 +1,65 @@
+znajdowanie minimum i maximum globalnego
+
+f: R^n -> R
+g: N^n -> R_+
+
+albo brut dzielacy na male przedzialy
+(mega ciezki obliczeniowo)
+
+albo problem najszybszego spadku
+
+heurystyczne przyjecie strategii, ktora zapobiegnie utknieciu
+
+metaheurystyka -> dopasowanie heury do problemu
+dobierasz pomysl do problemu
+
+laczymy dwa pomysly - idziemy z kierunkiem spadku uzywajac czasem losowosci
+
+zewnetrzny uklad temp i funkcja monotoniczna
+schemat wyżarzania
+Tk = T0 - Bk
+Tk = T0*A^k
+Tk = T0/log(1+k)
+domyslnie A = 0.98
+
+kolejne szukane elem z przestrzeni stanow
+graf sasiadow
+jesli temp jest wysoka, to jest prawdop p_i zalezne od temperatury, zeby przejsc do stanu o wyzszej energii
+im dalej w algorytm, tym mniejsza szansa akceptacji wyzszej energii
+
+wlasna emplementacja tego
+jakie kryteria stopu?
+->dobor hiperparam
+
+
+dobrze skomponowany musi miec faze z duza, srednia i mala apmlituda
+sudoku jest calkiem trudnym algosem do tego
+zawsze zadana liczba krokow
+->albo utknelismy w minimum albo mamy dobry wynik
+->algorytm stochastyczny, warto puścić parę razy
+->algorytm powinien miec pamiec, w przypadku, gdyby funkcja wyskoczyla z esktremum
+
+dual ze scipy
+
+3 problemy:
+-> TSP - projektowanie ścieżek na układach scalonych
+generuj chmure punktow 2D
+jesli punkty sa w klastrach, to powinny byc odwiedzone razem
+
+->symulacja procesu metalurgicznego
+macierz binarna - nasz swiat, zdefiniowana calkowita energia potencjalna
+E(k) -> suma po i, j dla e(k) w stanie i,j
+komorka ma dwa stany, czarny i bialy
+lokalna energia moze byc liczona na podstawie lokalnego sasiedztwa (np 4 sasiadow, 8 sasiadow)
+sympatie i antypate w zakresie sasiadow, moze byc asymetria
+symulujemy esktrema E, najlepiej ruszac wiecej niz jeden punkt naraz
+mile widziana jest ciekawa fizyka
+uklad symulujący układ krystaliczny
+mozemy tak budowac labirynty, klastry, przesuwac punkty, w oparciu o asym. sasiedztwo
+wykaz sie kreatywnoscia, wiele ladnych gifow pokazujacych ewolucje (min 512x512)
+hipoteza siekiery hartowanej -> taki sam stan poczatkowy, ale rozne funkcje wyżarzania
+
+->sudoku, wez trudne plansze, jak dobrac temp poczatkowe i funkcje, zeby sie policzylo?
+jak temp poczatkowa? pogrzewac? (wolne schladzanie potrzebne)
+suma powtarzajacych sie liczb chcemy zminimalizowac (?) -> do zera
+dualsim ze scipy
